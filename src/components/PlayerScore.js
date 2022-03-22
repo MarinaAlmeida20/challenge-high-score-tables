@@ -1,19 +1,19 @@
 import React from "react";
 
-function PlayerScore({ score }) {
-  // console.log(score);
+function PlayerScore({ scores }) {
+  console.log(scores);
   return (
     <>
-      {score.map((sc, index) => {
-        console.log(sc.name);
-        <h3>{sc.name}</h3>;
-        let scores = sc.scores;
-        scores.map((v) => {
-          let numberConverted = Number(v.s);
-          let names = v.n;
-          return `${names}   ${numberConverted}`;
-        });
-      })}
+      {scores
+        .sort((a, b) => (a.s < b.s ? 1 : -1))
+        .map((e, index) => {
+          // console.log(e);
+          let names = e.n;
+          let numbers = Number(e.s);
+
+          // console.log(numbers);
+          return <li key={index}>{`${names} ${numbers}`}</li>;
+        })}
     </>
   );
 }
